@@ -31,9 +31,10 @@
 
     <section id="hero" class="relative w-full h-screen overflow-hidden bg-stone-950 flex items-center justify-center">
         <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-80">
-            <source src="videot/vila-video.mp4" type="video/mp4">
+            <source src="videot/1.mp4" type="video/mp4">
         </video>
-        <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/20 hover:bg-black/40 transition-colors duration-500 group">
+        
+        <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/10 hover:bg-black/40 transition-colors duration-500 group">
             <div class="bg-white/95 p-8 max-w-sm w-full mx-4 shadow-2xl text-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
                 <span class="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-bold block mb-2">2026 Showcase</span>
                 <h3 class="text-base uppercase tracking-widest font-bold text-stone-900 mb-1">NODE architecture</h3>
@@ -53,50 +54,181 @@
     <section id="portfolio" class="py-28 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 mb-12">
             <h2 class="text-xs uppercase tracking-[0.3em] text-stone-400 font-bold">Selected Works //</h2>
-            <p class="text-stone-500 text-xs uppercase tracking-wider mt-1">Use your mouse wheel or swipe to scroll horizontally</p>
+            <p class="text-stone-500 text-xs uppercase tracking-wider mt-1">Swipe or scroll to explore projects</p>
         </div>
 
-        <div id="horizontal-container" class="flex overflow-x-auto gap-8 px-6 md:px-24 py-4 no-scrollbar scroll-smooth snap-x snap-mandatory">
-            <div class="snap-start flex-shrink-0 w-[290px] md:w-[420px] group cursor-pointer" onclick="alert('Opening Project 1 Gallery')">
-                <div class="relative aspect-[4/3] w-full bg-stone-50 overflow-hidden mb-4 border border-stone-100 rounded-sm">
-                    <video src="videot/vila-video.mp4" autoplay loop muted playsinline class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"></video>
-                    <img src="imazhet/projekt1/1.jpg" class="hidden w-full h-full object-cover">
+        <div id="horizontal-container" class="flex overflow-x-auto gap-8 px-6 md:px-24 py-4 no-scrollbar snap-x snap-mandatory">
+            </div>
+    </section>
+
+    <div id="gallery-modal" class="fixed inset-0 bg-stone-950/95 z-[100] hidden flex-col justify-between p-6" onclick="closeGalleryFromOutside(event)">
+        
+        <div class="flex justify-between items-center max-w-7xl w-full mx-auto z-10">
+            <div>
+                <h3 id="modal-title" class="text-sm uppercase tracking-widest font-bold text-white">Project Title</h3>
+            </div>
+            <button onclick="closeGallery()" class="text-stone-400 hover:text-white text-3xl font-light p-2">&times;</button>
+        </div>
+
+        <div class="flex items-center justify-between max-w-7xl w-full mx-auto my-4 h-[70vh] z-10">
+            <button onclick="prevMedia()" class="text-white hover:text-stone-400 text-3xl p-4 bg-stone-900/50 rounded-full select-none">&larr;</button>
+            
+            <div id="modal-media-wrapper" class="w-full h-full flex items-center justify-center p-4">
                 </div>
-                <div class="flex justify-between items-baseline px-1">
-                    <div>
-                        <h4 class="text-xs uppercase tracking-widest font-bold text-stone-900 group-hover:text-stone-600 transition">Minimalist Villa Concept</h4>
-                        <p class="text-[10px] text-stone-400 mt-0.5 uppercase tracking-wider">Architectural & Interior Design</p>
-                    </div>
-                    <span class="text-xs text-stone-300 font-mono">2026</span>
+            
+            <button onclick="nextMedia()" class="text-white hover:text-stone-400 text-3xl p-4 bg-stone-900/50 rounded-full select-none">&rarr;</button>
+        </div>
+
+        <div id="modal-counter" class="p-4 text-center text-[10px] uppercase tracking-[0.2em] text-stone-500 font-bold z-10">01 / 06</div>
+    </div>
+
+    <footer id="contact" class="max-w-7xl mx-auto px-6 py-24 border-t border-stone-100">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+            <div>
+                <h4 class="text-xs uppercase tracking-widest font-bold text-stone-400 mb-8">Direct Inquiries</h4>
+                <div class="space-y-4 text-3xl font-light tracking-tight">
+                    <p><a href="mailto:node.arch.al@gmail.com" class="hover:text-stone-400 transition underline underline-offset-8 decoration-stone-200">node.arch.al@gmail.com</a></p>
+                    <p><a href="tel:+355685696699" class="hover:text-stone-400 transition">+355 68 569 6699</a></p>
                 </div>
             </div>
-
-            <div class="snap-start flex-shrink-0 w-[290px] md:w-[420px] group cursor-pointer" onclick="alert('Opening Project 2 Gallery')">
-                <div class="relative aspect-[4/3] w-full bg-stone-50 overflow-hidden mb-4 border border-stone-100 rounded-sm">
-                    <video src="videot/orikum-video.mp4" autoplay loop muted playsinline class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"></video>
-                    <img src="imazhet/projekt2/1.jpg" class="hidden w-full h-full object-cover">
-                </div>
-                <div class="flex justify-between items-baseline px-1">
-                    <div>
-                        <h4 class="text-xs uppercase tracking-widest font-bold text-stone-900 group-hover:text-stone-600 transition">Residential Complex Orikum</h4>
-                        <p class="text-[10px] text-stone-400 mt-0.5 uppercase tracking-wider">Facade & Mass Planning</p>
-                    </div>
-                    <span class="text-xs text-stone-300 font-mono">2025</span>
-                </div>
+            <div class="flex flex-col justify-end md:items-end">
+                <p class="text-stone-400 text-xs uppercase tracking-widest font-bold">&copy; 2026 NODE architecture & consulting</p>
+                <p class="text-stone-300 text-[10px] mt-2 italic">Tirana, Albania</p>
             </div>
+        </div>
+    </footer>
 
-            <div class="snap-start flex-shrink-0 w-[290px] md:w-[420px] group cursor-pointer">
-                <div class="relative aspect-[4/3] w-full bg-stone-50 overflow-hidden mb-4 border border-stone-100 rounded-sm">
-                    <video src="videot/kukes-video.mp4" autoplay loop muted playsinline class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"></video>
-                    <img src="imazhet/projekt3/1.jpg" class="hidden w-full h-full object-cover">
-                </div>
-                <div class="flex justify-between items-baseline px-1">
-                    <div>
-                        <h4 class="text-xs uppercase tracking-widest font-bold text-stone-900">Urban Development Kukës</h4>
-                        <p class="text-[10px] text-stone-400 mt-0.5 uppercase tracking-wider">Mass Plan Strategy</p>
+    <script>
+        // Të 6 projektet tani përdorin 'videot/1.mp4' që të hapen pa problem teknik
+        const myProjects = [
+            {
+                id: 1,
+                title: "Minimalist Villa Concept",
+                service: "Architectural & Interior Design",
+                year: "2026",
+                video: "videot/1.mp4",
+                images: ["imazhet/projekt1/1.jpg", "imazhet/projekt1/2.jpg", "imazhet/projekt1/3.jpg", "imazhet/projekt1/4.jpg", "imazhet/projekt1/5.jpg"]
+            },
+            {
+                id: 2,
+                title: "Residential Complex Orikum",
+                service: "Facade & Mass Planning",
+                year: "2025",
+                video: "videot/1.mp4",
+                images: ["imazhet/projekt2/1.jpg", "imazhet/projekt2/2.jpg", "imazhet/projekt2/3.jpg", "imazhet/projekt2/4.jpg", "imazhet/projekt2/5.jpg"]
+            },
+            {
+                id: 3,
+                title: "Urban Development Kukës",
+                service: "Mass Plan Strategy",
+                year: "2026",
+                video: "videot/1.mp4",
+                images: ["imazhet/projekt3/1.jpg", "imazhet/projekt3/2.jpg", "imazhet/projekt3/3.jpg", "imazhet/projekt3/4.jpg", "imazhet/projekt3/5.jpg"]
+            },
+            {
+                id: 4,
+                title: "Technical Design Kavajë",
+                service: "Execution Layouts",
+                year: "2026",
+                video: "videot/1.mp4",
+                images: ["imazhet/projekt4/1.jpg", "imazhet/projekt4/2.jpg", "imazhet/projekt4/3.jpg", "imazhet/projekt4/4.jpg", "imazhet/projekt4/5.jpg"]
+            },
+            {
+                id: 5,
+                title: "Recreational Center Shkodër",
+                service: "Structural Consulting",
+                year: "2026",
+                video: "videot/1.mp4",
+                images: ["imazhet/projekt5/1.jpg", "imazhet/projekt5/2.jpg", "imazhet/projekt5/3.jpg", "imazhet/projekt5/4.jpg", "imazhet/projekt5/5.jpg"]
+            },
+            {
+                id: 6,
+                title: "Regional Hospital Theth",
+                service: "Landscape & Facade Design",
+                year: "2026",
+                video: "videot/1.mp4",
+                images: ["imazhet/projekt6/1.jpg", "imazhet/projekt6/2.jpg", "imazhet/projekt6/3.jpg", "imazhet/projekt6/4.jpg", "imazhet/projekt6/5.jpg"]
+            }
+        ];
+
+        let activeProject = null;
+        let activeMediaIdx = 0;
+
+        function buildPortfolioGrid() {
+            const container = document.getElementById('horizontal-container');
+            container.innerHTML = myProjects.map(p => `
+                <div class="snap-start flex-shrink-0 w-[290px] md:w-[420px] group cursor-pointer" onclick="openGallery(${p.id})">
+                    <div class="relative aspect-[4/3] w-full bg-stone-50 overflow-hidden mb-4 border border-stone-100 rounded-sm">
+                        <video src="${p.video}" autoplay loop muted playsinline class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"></video>
+                        <img src="${p.images[0]}" class="hidden w-full h-full object-cover">
                     </div>
-                    <span class="text-xs text-stone-300 font-mono">2026</span>
+                    <div class="flex justify-between items-baseline px-1">
+                        <div>
+                            <h4 class="text-xs uppercase tracking-widest font-bold text-stone-900 group-hover:text-stone-600 transition">${p.title}</h4>
+                            <p class="text-[10px] text-stone-400 mt-0.5 uppercase tracking-wider">${p.service}</p>
+                        </div>
+                        <span class="text-xs text-stone-300 font-mono">${p.year}</span>
+                    </div>
                 </div>
-            </div>
+            `).join('');
+        }
 
-            <div class="snap-start flex-shrink-0 w-[290px] md:w-
+        function openGallery(id) {
+            activeProject = myProjects.find(p => p.id === id);
+            activeMediaIdx = 0; 
+            updateModalView();
+            document.getElementById('gallery-modal').classList.remove('hidden');
+            document.getElementById('gallery-modal').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGallery() {
+            document.getElementById('gallery-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeGalleryFromOutside(event) {
+            const wrapper = document.getElementById('modal-media-wrapper');
+            if (!wrapper.contains(event.target) && event.target.tagName !== 'BUTTON') {
+                closeGallery();
+            }
+        }
+
+        function updateModalView() {
+            const wrapper = document.getElementById('modal-media-wrapper');
+            document.getElementById('modal-title').innerText = activeProject.title;
+            
+            if (activeMediaIdx === 0) {
+                // Media 1: Luhet videoja automatikisht brenda galerisë lart
+                wrapper.innerHTML = `<video src="${activeProject.video}" autoplay loop controls playsinline class="max-h-full max-w-full object-contain"></video>`;
+            } else {
+                // Mediat e tjera: Shfaqen fotot me radhë
+                const imgUrl = activeProject.images[activeMediaIdx - 1];
+                wrapper.innerHTML = `<img src="${imgUrl}" class="max-h-full max-w-full object-contain rounded-sm">`;
+            }
+
+            document.getElementById('modal-counter').innerText = `0${activeMediaIdx + 1} / 06`;
+        }
+
+        function nextMedia() { activeMediaIdx = (activeMediaIdx + 1) % 6; updateModalView(); }
+        function prevMedia() { activeMediaIdx = (activeMediaIdx - 1 + 6) % 6; updateModalView(); }
+
+        buildPortfolioGrid();
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeGallery();
+            if (e.key === "ArrowRight" && !document.getElementById('gallery-modal').classList.contains('hidden')) nextMedia();
+            if (e.key === "ArrowLeft" && !document.getElementById('gallery-modal').classList.contains('hidden')) prevMedia();
+        });
+
+        // Kontrolli horizontal me rrotullën e mausit mbi seksionin e portfolios
+        const scrollCont = document.getElementById('horizontal-container');
+        scrollCont.addEventListener('wheel', (e) => {
+            if (e.deltaY !== 0) {
+                e.preventDefault();
+                scrollCont.scrollLeft += e.deltaY * 1.4;
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>
