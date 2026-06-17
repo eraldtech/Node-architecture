@@ -28,32 +28,33 @@
         </div>
     </header>
 
-    <section id="hero" class="relative w-full h-screen overflow-hidden bg-stone-950 flex items-center justify-center">
+    <section id="hero" class="relative w-full h-screen overflow-hidden bg-stone-950 flex items-center justify-center cursor-pointer group/hero" onclick="toggleHeroCard(event)">
         <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-70" onerror="this.style.display='none'; document.getElementById('hero-fallback-img').classList.remove('hidden');">
             <source src="videot/1.mp4" type="video/mp4">
         </video>
         <img id="hero-fallback-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1800" class="absolute inset-0 w-full h-full object-cover opacity-40 hidden" alt="Architecture Background">
         
-        <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/20">
-            <div class="bg-white/95 backdrop-blur-md p-8 md:p-12 max-w-xl w-full mx-4 shadow-2xl text-center translate-y-0 transition-all duration-500 ease-out rounded-sm border border-stone-200/50">
-                <span class="text-[10px] uppercase tracking-[0.3em] text-stone-400 font-bold block mb-3">Established Studio</span>
-                <h2 class="text-2xl md:text-3xl font-light tracking-tight text-stone-900 mb-2 uppercase">NODE architecture</h2>
-                <p class="text-xs text-stone-500 tracking-widest font-serif italic mb-6">Designing Excellence Since 2014</p>
+        <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/10 group-hover/hero:bg-black/30 transition-colors duration-500">
+            <div id="hero-interactive-card" class="bg-white/10 backdrop-blur-lg p-8 md:p-12 max-w-xl w-full mx-4 shadow-2xl text-center rounded-sm border border-white/20 text-white opacity-0 pointer-events-none translate-y-4 group-hover/hero:opacity-100 group-hover/hero:pointer-events-auto group-hover/hero:translate-y-0 transition-all duration-500 ease-out">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-stone-300 font-bold block mb-3">Established Studio</span>
+                <h2 class="text-2xl md:text-3xl font-light tracking-tight text-white mb-2 uppercase">NODE architecture</h2>
+                <p class="text-xs text-stone-300 tracking-widest font-serif italic mb-6">Designing Excellence Since 2014</p>
                 
-                <div class="h-[1px] w-16 bg-stone-200 mx-auto mb-6"></div>
+                <div class="h-[1px] w-16 bg-white/20 mx-auto mb-6"></div>
                 
                 <div class="space-y-2 mb-8">
-                    <p class="text-[11px] uppercase tracking-widest text-stone-400 font-bold">Direct Channels</p>
-                    <p class="text-sm font-medium text-stone-800"><a href="mailto:node.arch.al@gmail.com" class="hover:text-stone-500 transition">node.arch.al@gmail.com</a></p>
-                    <p class="text-sm text-stone-600"><a href="tel:+355685696699" class="hover:text-stone-500 transition">+355 68 569 6699</a></p>
+                    <p class="text-[10px] uppercase tracking-widest text-stone-300 font-bold">Direct Channels</p>
+                    <p class="text-sm font-light tracking-wide"><a href="mailto:node.arch.al@gmail.com" class="hover:text-stone-300 transition">node.arch.al@gmail.com</a></p>
+                    <p class="text-sm font-light tracking-wide"><a href="tel:+355685696699" class="hover:text-stone-300 transition">+355 68 569 6699</a></p>
                 </div>
                 
-                <a href="#about" class="text-[11px] uppercase tracking-[0.2em] font-semibold text-white bg-stone-900 hover:bg-stone-800 px-6 py-3 inline-block rounded-sm transition shadow-md">
+                <a href="#about" class="text-[11px] uppercase tracking-[0.2em] font-semibold text-stone-900 bg-white hover:bg-stone-100 px-6 py-3 inline-block rounded-sm transition shadow-md">
                     Work With Us
                 </a>
             </div>
         </div>
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-white/50 text-[10px] uppercase tracking-[0.3em] animate-pulse flex flex-col items-center">
+        
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-white/50 text-[10px] uppercase tracking-[0.3em] animate-pulse flex flex-col items-center pointer-events-none">
             <span>Scroll Down</span>
             <span class="text-base mt-1">&darr;</span>
         </div>
@@ -95,15 +96,13 @@
     </section>
 
     <div id="gallery-modal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-xl z-[100] hidden flex-col justify-between p-4 md:p-6" onclick="closeGalleryFromOutside(event)">
-        
         <div class="flex justify-between items-center max-w-7xl w-full mx-auto z-10 pt-2">
             <h3 id="modal-title" class="text-xs uppercase tracking-widest font-bold text-white tracking-wider">Project Title</h3>
             <button onclick="closeGallery()" class="text-stone-400 hover:text-white text-3xl font-light p-2 transition">&times;</button>
         </div>
 
         <div class="relative flex-grow flex items-center justify-center max-w-6xl w-full mx-auto my-auto h-[80vh]">
-            
-            <div id="modal-media-wrapper" class="relative max-h-full max-w-full flex items-center justify-center overflow-hidden group/media shadow-2xl bg-stone-900/10">
+            <div id="modal-media-wrapper" class="relative max-h-full max-w-full flex items-center justify-center overflow-hidden shadow-2xl">
                 <img id="modal-img" src="" class="max-h-[80vh] max-w-full w-auto h-auto object-contain select-none rounded-sm" alt="Project Showcase">
                 
                 <button onclick="prevMedia()" class="absolute left-0 top-0 h-full px-4 md:px-6 flex items-center justify-start text-white/10 hover:text-white/90 hover:bg-gradient-to-r hover:from-black/40 hover:to-transparent text-3xl md:text-4xl font-light transition-all duration-300 select-none z-20">
@@ -114,7 +113,6 @@
                     &rarr;
                 </button>
             </div>
-            
         </div>
 
         <div id="modal-counter" class="p-2 text-center text-[10px] uppercase tracking-[0.2em] text-stone-400 font-bold z-10 mb-2">01 / 05</div>
@@ -194,6 +192,21 @@
 
         let activeProject = null;
         let activeMediaIdx = 0;
+
+        // Interactive function to handle mobile clicks on the hero video
+        function toggleHeroCard(event) {
+            const card = document.getElementById('hero-interactive-card');
+            // If the user clicks a button or link inside the card, do not toggle it off
+            if (event.target.closest('a') || event.target.closest('button')) return;
+            
+            if (card.classList.contains('opacity-0')) {
+                card.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+                card.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+            } else {
+                card.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+                card.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+            }
+        }
 
         function buildVerticalGrid() {
             const grid = document.getElementById('vertical-grid');
