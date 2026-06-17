@@ -46,6 +46,9 @@
                     <p class="text-[10px] uppercase tracking-widest text-stone-300 font-bold">Direct Channels</p>
                     <p class="text-sm font-light tracking-wide"><a href="mailto:node.arch.al@gmail.com" class="hover:text-stone-300 transition">node.arch.al@gmail.com</a></p>
                     <p class="text-sm font-light tracking-wide"><a href="tel:+355685696699" class="hover:text-stone-300 transition">+355 68 569 6699</a></p>
+                    <p class="text-xs text-stone-300 pt-1">
+                        <a href="https://www.instagram.com/arkitekt_al/" target="_blank" class="underline underline-offset-4 hover:text-white transition font-medium">Follow us on Instagram @arkitekt_al</a>
+                    </p>
                 </div>
                 
                 <a href="#about" class="text-[11px] uppercase tracking-[0.2em] font-semibold text-stone-900 bg-white hover:bg-stone-100 px-6 py-3 inline-block rounded-sm transition shadow-md">
@@ -128,6 +131,9 @@
                 <p class="text-sm text-stone-500 tracking-wide">
                     <a href="tel:+355685696699" class="hover:text-stone-400 transition">+355 68 569 6699</a>
                 </p>
+                <p class="text-xs text-stone-400 pt-2 tracking-wide">
+                    <a href="https://www.instagram.com/arkitekt_al/" target="_blank" class="hover:text-stone-900 transition font-medium border-b border-stone-200 pb-0.5">Follow on Instagram @arkitekt_al</a>
+                </p>
             </div>
             <div class="md:text-right">
                 <p class="text-stone-400 text-[10px] uppercase tracking-[0.2em] font-bold">&copy; 2026 NODE architecture & consulting</p>
@@ -193,10 +199,8 @@
         let activeProject = null;
         let activeMediaIdx = 0;
 
-        // Interactive function to handle mobile clicks on the hero video
         function toggleHeroCard(event) {
             const card = document.getElementById('hero-interactive-card');
-            // If the user clicks a button or link inside the card, do not toggle it off
             if (event.target.closest('a') || event.target.closest('button')) return;
             
             if (card.classList.contains('opacity-0')) {
