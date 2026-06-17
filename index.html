@@ -99,17 +99,136 @@
     </footer>
 
     <script>
-        // DATA LOGISTICS (Rregulluar: Video 1.mp4 në krye)
+        // Të 6 projektet tani përdorin 'videot/1.mp4' që të hapen pa problem teknik
         const myProjects = [
             {
                 id: 1,
                 title: "Minimalist Villa Concept",
                 service: "Architectural & Interior Design",
                 year: "2026",
-                video: "videot/1.mp4", // Videoja jote reale
+                video: "videot/1.mp4",
                 images: ["imazhet/projekt1/1.jpg", "imazhet/projekt1/2.jpg", "imazhet/projekt1/3.jpg", "imazhet/projekt1/4.jpg", "imazhet/projekt1/5.jpg"]
             },
             {
                 id: 2,
                 title: "Residential Complex Orikum",
-                service: "Facade & Mass
+                service: "Facade & Mass Planning",
+                year: "2025",
+                video: "videot/1.mp4",
+                images: ["imazhet/projekt2/1.jpg", "imazhet/projekt2/2.jpg", "imazhet/projekt2/3.jpg", "imazhet/projekt2/4.jpg", "imazhet/projekt2/5.jpg"]
+            },
+            {
+                id: 3,
+                title: "Urban Development Kukës",
+                service: "Mass Plan Strategy",
+                year: "2026",
+                video: "videot/1.mp4",
+                images: ["imazhet/projekt3/1.jpg", "imazhet/projekt3/2.jpg", "imazhet/projekt3/3.jpg", "imazhet/projekt3/4.jpg", "imazhet/projekt3/5.jpg"]
+            },
+            {
+                id: 4,
+                title: "Technical Design Kavajë",
+                service: "Execution Layouts",
+                year: "2026",
+                video: "videot/1.mp4",
+                images: ["imazhet/projekt4/1.jpg", "imazhet/projekt4/2.jpg", "imazhet/projekt4/3.jpg", "imazhet/projekt4/4.jpg", "imazhet/projekt4/5.jpg"]
+            },
+            {
+                id: 5,
+                title: "Recreational Center Shkodër",
+                service: "Structural Consulting",
+                year: "2026",
+                video: "videot/1.mp4",
+                images: ["imazhet/projekt5/1.jpg", "imazhet/projekt5/2.jpg", "imazhet/projekt5/3.jpg", "imazhet/projekt5/4.jpg", "imazhet/projekt5/5.jpg"]
+            },
+            {
+                id: 6,
+                title: "Regional Hospital Theth",
+                service: "Landscape & Facade Design",
+                year: "2026",
+                video: "videot/1.mp4",
+                images: ["imazhet/projekt6/1.jpg", "imazhet/projekt6/2.jpg", "imazhet/projekt6/3.jpg", "imazhet/projekt6/4.jpg", "imazhet/projekt6/5.jpg"]
+            }
+        ];
+
+        let activeProject = null;
+        let activeMediaIdx = 0;
+
+        function buildPortfolioGrid() {
+            const container = document.getElementById('horizontal-container');
+            container.innerHTML = myProjects.map(p => `
+                <div class="snap-start flex-shrink-0 w-[290px] md:w-[420px] group cursor-pointer" onclick="openGallery(${p.id})">
+                    <div class="relative aspect-[4/3] w-full bg-stone-50 overflow-hidden mb-4 border border-stone-100 rounded-sm">
+                        <video src="${p.video}" autoplay loop muted playsinline class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"></video>
+                        <img src="${p.images[0]}" class="hidden w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-baseline px-1">
+                        <div>
+                            <h4 class="text-xs uppercase tracking-widest font-bold text-stone-900 group-hover:text-stone-600 transition">${p.title}</h4>
+                            <p class="text-[10px] text-stone-400 mt-0.5 uppercase tracking-wider">${p.service}</p>
+                        </div>
+                        <span class="text-xs text-stone-300 font-mono">${p.year}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openGallery(id) {
+            activeProject = myProjects.find(p => p.id === id);
+            activeMediaIdx = 0; 
+            updateModalView();
+            document.getElementById('gallery-modal').classList.remove('hidden');
+            document.getElementById('gallery-modal').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGallery() {
+            document.getElementById('gallery-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeGalleryFromOutside(event) {
+            const wrapper = document.getElementById('modal-media-wrapper');
+            if (!wrapper.contains(event.target) && event.target.tagName !== 'BUTTON') {
+                closeGallery();
+            }
+        }
+
+        function updateModalView() {
+            const wrapper = document.getElementById('modal-media-wrapper');
+            document.getElementById('modal-title').innerText = activeProject.title;
+            
+            if (activeMediaIdx === 0) {
+                // Media 1: Luhet videoja automatikisht brenda galerisë lart
+                wrapper.innerHTML = `<video src="${activeProject.video}" autoplay loop controls playsinline class="max-h-full max-w-full object-contain"></video>`;
+            } else {
+                // Mediat e tjera: Shfaqen fotot me radhë
+                const imgUrl = activeProject.images[activeMediaIdx - 1];
+                wrapper.innerHTML = `<img src="${imgUrl}" class="max-h-full max-w-full object-contain rounded-sm">`;
+            }
+
+            document.getElementById('modal-counter').innerText = `0${activeMediaIdx + 1} / 06`;
+        }
+
+        function nextMedia() { activeMediaIdx = (activeMediaIdx + 1) % 6; updateModalView(); }
+        function prevMedia() { activeMediaIdx = (activeMediaIdx - 1 + 6) % 6; updateModalView(); }
+
+        buildPortfolioGrid();
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeGallery();
+            if (e.key === "ArrowRight" && !document.getElementById('gallery-modal').classList.contains('hidden')) nextMedia();
+            if (e.key === "ArrowLeft" && !document.getElementById('gallery-modal').classList.contains('hidden')) prevMedia();
+        });
+
+        // Kontrolli horizontal me rrotullën e mausit mbi seksionin e portfolios
+        const scrollCont = document.getElementById('horizontal-container');
+        scrollCont.addEventListener('wheel', (e) => {
+            if (e.deltaY !== 0) {
+                e.preventDefault();
+                scrollCont.scrollLeft += e.deltaY * 1.4;
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>
